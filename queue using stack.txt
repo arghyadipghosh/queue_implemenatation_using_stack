@@ -1,0 +1,70 @@
+#include<iostream>
+using namespace std;
+
+void push(int &size,int s1[],int &top1,int &val)
+{
+	if(top1>=size-1)
+	{
+		cout<<"stack full";
+	}
+	else
+	{
+		top1++;
+		s1[top1]=val;
+	}
+}
+void pop(int &size,int s1[],int s2[],int &top1,int &top2)
+{
+	if(top2==0 && top1==0)
+	{
+		cout<<"stack is empty";
+	}
+	else if(top2==0)
+	{
+		
+		while(top1!=0)
+		{
+			int x=s1[top1];
+			top1--;
+			push(size,s2,top2,x);
+		}
+		pop(size,s1,s2,top1,top2);
+	}
+	else
+	{
+		cout<<"the popped element is :"<<s2[top2]<<endl;
+		top2--;
+	}
+}
+
+int main()
+{
+  int val;
+  int size;
+  cout<<"enter the size of the stack";
+  cin>>size;
+  int s1[size],s2[size];
+   cout<<"1) Push in stack"<<endl;
+   cout<<"2) Pop from stack"<<endl;
+  int top1=0,top2=0;
+   int ch;
+  
+   do{
+    cout<<"enetr the choice:";
+    cin>>ch;
+   	switch(ch)
+   	{
+   		case 1:
+   			cout<<"enter the element to be pushed:"<<endl;
+   			cin>>val;
+   			push(size,s1,top1,val);
+   			break;
+   		case 2:
+   			pop(size,s1,s2,top1,top2);
+   			break;
+   		default:
+   			cout<<"wrong choice";
+    }
+   }while(ch!=4);
+   return 0;
+}
